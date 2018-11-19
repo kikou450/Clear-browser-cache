@@ -1,4 +1,4 @@
-﻿####### Variables
+####### Variables
 $version = (Get-WmiObject -class Win32_OperatingSystem).Caption
 $users = (Get-ChildItem -path C:\Users | select Name).name
 
@@ -19,26 +19,26 @@ Remove-Item –path "C:\Windows\Temp\" -Recurse –force -ErrorAction SilentlyCo
 Write-Host -ForegroundColor Green "OK"
 
 ####### Corbeille
-#$ret=Read-Host "Souhaitez-vous vider la Corbeille ? [Y/n]"
-#Write-Host -ForegroundColor Yellow "Vidage de la Corbeille : " -NoNewline
-#If($ret -match "y|Y"){
-#Remove-Item –path "C:\`$recycle.bin\" -Recurse -Force 
-#Write-Host -ForegroundColor Green "OK"
-#} else {
-#Write-Host -ForegroundColor red "Non"
-#}
+$ret=Read-Host "Souhaitez-vous vider la Corbeille ? [Y/n]"
+Write-Host -ForegroundColor Yellow "Vidage de la Corbeille : " -NoNewline
+If($ret -match "y|Y"){
+Remove-Item –path "C:\`$recycle.bin\" -Recurse -Force 
+Write-Host -ForegroundColor Green "OK"
+} else {
+Write-Host -ForegroundColor red "Non"
+}
 
 ####### Téléchargements
-#$ret=Read-Host "Souhaitez-vous supprimer les Téléchargements ? [Y/n]"
-#Write-Host -ForegroundColor Yellow "Suppression des Téléchargements : " -NoNewline
-#If($ret -match "y|Y"){
-# foreach($user in $users){
-#       Remove-Item –path C:\Users\$user\Downloads\* -Recurse -Force -EA SilentlyContinue
-#}
-#Write-Host -ForegroundColor Green "OK"
-#} else {
-#Write-Host -ForegroundColor red "Non"
-#}
+$ret=Read-Host "Souhaitez-vous supprimer les Téléchargements ? [Y/n]"
+Write-Host -ForegroundColor Yellow "Suppression des Téléchargements : " -NoNewline
+If($ret -match "y|Y"){
+ foreach($user in $users){
+       Remove-Item –path C:\Users\$user\Downloads\* -Recurse -Force -EA SilentlyContinue
+}
+Write-Host -ForegroundColor Green "OK"
+} else {
+Write-Host -ForegroundColor red "Non"
+}
 
 ####### Internet Explorer
 Write-Host -ForegroundColor Yellow "Suppression des fichiers temporaires de Internet Explorer : " -NoNewline
@@ -62,7 +62,7 @@ Write-Host -ForegroundColor Yellow "Suppression des fichiers temporaires de Mozi
  foreach($user in $users){
             Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\cache\* -Recurse -Force -EA SilentlyContinue
             Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\cache\*.* -Recurse -Force -EA SilentlyContinue
-	        Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\cache2\entries\*.* -Recurse -Force -EA SilentlyContinue
+	    Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\cache2\entries\*.* -Recurse -Force -EA SilentlyContinue
             Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\thumbnails\* -Recurse -Force -EA SilentlyContinue
             Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\cookies.sqlite -Recurse -Force -EA SilentlyContinue
             Remove-Item -path C:\Users\$user\AppData\Local\Mozilla\Firefox\Profiles\*.default\webappsstore.sqlite -Recurse -Force -EA SilentlyContinue
